@@ -1,0 +1,100 @@
+// tetin file version 1.1
+// written by ICEM CFD - version 19.2 on Mon Jun 26 17:53:08 2023
+
+set_triangulation_tolerance 0.001
+# In ICEM CFD 4.2 the family_boco file is no longer tied to tetin
+# read_family_boco family_boco
+define_family GEOM color 16663866
+define_family FLOW prism 1 tetra_size 0.0 height 0 hratio 0 nlay 0 width 0 min 0.0 dev 0.0 prism_height_limit 0 law -1 color 14693271
+define_family WALL prism 1 tetra_size 0.0 height 0 hratio 0 nlay 0 width 0 min 0.0 dev 0.0 prism_height_limit 0 law -1 color 3604041
+
+prescribed_point 0 0 0 family GEOM name pnt.00
+prescribed_point 0.2 0 0 family GEOM name pnt.01
+prescribed_point 0.35 0 0 family GEOM name pnt.02
+prescribed_point 0.5 0 0 family GEOM name pnt.03
+prescribed_point 0.35 0.15 0 family GEOM name pnt.04
+prescribed_point 0.7 0 0 family GEOM name pnt.05
+prescribed_point 0 0.33 0 family GEOM name pnt.06
+prescribed_point 0.7 0.33 0 family GEOM name pnt.07
+define_curve family FLOW tetra_size 1e+10 name crv.00 vertex1 pnt.00 vertex2 pnt.06
+bspline
+2,2,0
+0,0,1,1
+0,0,0
+0,0.33,0
+define_curve family FLOW tetra_size 1e+10 name crv.01 vertex1 pnt.06 vertex2 pnt.07
+bspline
+2,2,0
+0,0,1,1
+0,0.33,0
+0.7,0.33,0
+define_curve family FLOW tetra_size 1e+10 name crv.02 vertex1 pnt.07 vertex2 pnt.05
+bspline
+2,2,0
+0,0,1,1
+0.7,0.33,0
+0.7,0,0
+define_curve family FLOW tetra_size 0.00125786 name crv.03 vertex1 pnt.05 vertex2 pnt.03
+bspline
+2,2,0
+0,0,1,1
+0.7,0,0
+0.5,0,0
+define_curve_bunching crv.03 default n 160 h1 0 h2 0.0001 r1 2 r2 1.1 nlay1 1 nlay2 1 lmax 0
+define_curve family FLOW tetra_size 0.00125786 name crv.04 vertex1 pnt.01 vertex2 pnt.00
+bspline
+2,2,0
+0,0,1,1
+0.2,0,0
+0,0,0
+define_curve_bunching crv.04 default n 160 h1 0.0001 h2 0 r1 1.1 r2 2 nlay1 1 nlay2 1 lmax 0
+define_curve height 0.00050000002 size_ratio 1.1 height_ratio 1.1 nlayers 3 family WALL tetra_size 0.00157605 name crv.05 vertex1 pnt.01 vertex2 pnt.03
+bspline
+5,3,1
+0,0,0,1.5707963267949,1.5707963267949
+3.1415926535898,3.1415926535898,3.1415926535898
+0.2,0,0,1
+0.14142135623731,0.10606601717798,0,0.70710678118655
+0.35,0.15,0,1
+0.35355339059327,0.10606601717798,0,0.70710678118655
+0.5,1.836970198721e-17,0,1
+affix 0
+define_model 0.0049999999 reference_size 1
+global_meshing_parameter triangle_quality "inscribed_area"
+global_meshing_parameter tgrid_max_cell_skew "0.90"
+global_meshing_parameter tgrid_max_cap_skew "0.98"
+global_meshing_parameter tgrid_smoothing_level "1"
+global_meshing_parameter tgrid_enhance_offset_comp "0"
+global_meshing_parameter tgrid_enhance_norm_comp "0"
+global_meshing_parameter tgrid_gap_factor "0.5"
+global_meshing_parameter tgrid_fix_first_layer "0"
+global_meshing_parameter tgrid_n_ortho_layers "0"
+global_meshing_parameter quadratic "0"
+global_meshing_parameter snorm "1"
+global_meshing_parameter shrinkwrap_projfactor "0.1"
+global_meshing_parameter shrinkwrap_nsmooth "5"
+global_meshing_parameter free_bunch "0"
+global_meshing_parameter mapped_method "1"
+global_meshing_parameter merge_surfs "1"
+global_meshing_parameter max_elements "0"
+global_meshing_parameter max_nodes "0"
+global_meshing_parameter min_angle "0.0"
+global_meshing_parameter max_length "0.0"
+global_meshing_parameter max_area "0.0"
+global_meshing_parameter smooth_dormant "0"
+global_meshing_parameter mesh_dormant "0"
+global_meshing_parameter impr_level "2"
+global_meshing_parameter try_harder "2"
+global_meshing_parameter ign_size "0.0004"
+global_meshing_parameter surf_sizes "0"
+global_meshing_parameter proj_surf "1"
+global_meshing_parameter adjust_nodes_max "0.0"
+global_meshing_parameter block_mapping "0.2"
+global_meshing_parameter bound_smooth "0"
+global_meshing_parameter protect_line "0"
+global_meshing_parameter bunch_respect "0"
+global_meshing_parameter simple_offset "0"
+global_meshing_parameter mesh_method "1"
+global_meshing_parameter mesh_type "0"
+define_prism_meshing_parameters law 0 nlay 3 hratio 1.1 min_quality 0.01 fillet 0.1 tetra_smooth_limit 0.3
+return
